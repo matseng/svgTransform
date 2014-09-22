@@ -36,12 +36,18 @@ angular.module('draggable')
           deltaY = event.y - mouseY;
           node.transform.baseVal[0].matrix.e = nodeX + deltaX;
           node.transform.baseVal[0].matrix.f = nodeY + deltaY;
+        } else {
+          reset();
         }
       };
 
-      element.on('mouseup', function() {
+      function reset() {
         element.unbind('mousemove', 'ondrag');
         node = null;
+      };
+
+      element.on('mouseup', function() {
+        reset();
       });
     };
   }]);
